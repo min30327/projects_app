@@ -1,0 +1,35 @@
+.container{
+	max-width: 100%;
+}
+.side-nav{
+	position: fixed;
+	height: 100%;
+	width: 20%;
+	padding: 15px 20px;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	background:#242424;
+	color: #999;
+	@media only screen and(max-width:991px){
+		width: 400px;
+		}
+	@media only screen and(max-width:767px){
+		width: 300px;
+		}
+	@include easeInOutCubic(500);	
+}
+
+.main{
+	background:#fff;
+	position: relative;
+	left: 20%;
+	width: 80%;
+	z-index:2;
+	@media only screen and(max-width:991px){
+		width: 100%;
+		left: 0;
+		}
+
+	@include easeInOutCubic(500);	
+}

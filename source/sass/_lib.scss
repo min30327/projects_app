@@ -1,0 +1,21 @@
+body{
+	font-family: $font_family;
+}
+/** 明朝体 **/
+.min{
+	font-family: $font_family_min;
+}
+/** bold **/
+.fwb {
+    font-weight: bold;
+}
+/** normal **/
+.fwn{
+	font-weight: normal;
+}
+a{
+   @include link_color($link_color);
+}
+
+/** include margin and paddings mixin **/
+@include mp();

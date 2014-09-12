@@ -1,6 +1,9 @@
 body{
 	font-family: $font_family;
 }
+textarea{
+	resize : vertical; 
+}	
 /** 明朝体 **/
 .min{
 	font-family: $font_family_min;

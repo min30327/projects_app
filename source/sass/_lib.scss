@@ -16,6 +16,18 @@ body{
 a{
    @include link_color($link_color);
 }
+/** position: relative; **/
+.pos-r{
+	position: relative;
+}
+/** overflow: hidden; **/
+.ov-h{
+	overflow: hidden;
+}
+/** width: 100%; **/
+.w100p{
+	width: 100%;
+}
 
 /** include margin and paddings mixin **/
 @include mp();

@@ -1,0 +1,17 @@
+.panel-member{
+	.panel-heading{
+		position: relative;
+		padding-bottom: 25px;
+		.avatar{
+			position: absolute;
+			left: 0;	
+			width: 100%;
+			text-align: center;
+			display: block;
+			bottom: -25px;
+		}
+	}
+	.panel-body{
+		padding-top: 25px;
+	}
+}

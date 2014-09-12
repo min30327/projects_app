@@ -5,19 +5,27 @@
 	position: fixed;
 	height: 100%;
 	width: 20%;
-	padding: 15px 20px;
+	padding: 15px 0px;
 	left: 0;
 	top: 0;
 	z-index: 1;
-	background:#242424;
-	color: #999;
+	border-right: 1px solid #ddd;
 	@media only screen and(max-width:991px){
 		width: 400px;
 		}
 	@media only screen and(max-width:767px){
 		width: 300px;
 		}
-	@include easeInOutCubic(500);	
+	@include easeInOutCubic(500);
+	.nav{
+		li{
+			margin-top:  0;
+		}
+		a{
+			border-radius: 0;
+			border-bottom: 1px solid #ddd;
+		}
+	}
 }
 
 .main{
@@ -32,4 +40,43 @@
 		}
 
 	@include easeInOutCubic(500);	
+}
+
+.tab-pane{
+	padding: 10px;
+	@media only screen and(max-width:767px){
+		padding: 0;
+	}
+}
+
+.avatar{
+
+	img{
+		background:#ccc;
+		border: solid 1px #ccc;
+	}
+	span{
+		padding-top: 3px;
+		text-align: center;
+		display: block;
+		font-size: $fz_s;
+	}
+	&.w50{
+		img{
+			width: 50px;
+			height: auto;
+		}
+	}
+	&.w80{
+		img{
+			width: 80px;
+			height: auto;
+		}
+	}
+	&.w100{
+		img{
+			width: 100px;
+			height: auto;
+		}
+	}
 }

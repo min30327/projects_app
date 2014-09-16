@@ -1,167 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <title>Projects App</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Condensed">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="source/css/style.css">
-    <!--[if lt IE 9]>
-      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body ng-app="App">
-    <div>
-      <div class="side-nav">
-          <div class="panel-body">
-            <input type="text" class="form-control" placeholder="プロジェクトを検索">
-          </div>
-          <nav>
-            <ul class="nav nav-pills nav-stacked">
-              <li class="active">
-                <a href="">Projects</a>
-              </li>
-              <li>
-                <a href="#">Project01</a>
-              </li>
-              <li>
-                <a href="#">Project02</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-    </div>
-    <!-- main -->
-    <div class="main">
-      <div class="jumbotron">
-        <div class="container">
-          <h1>Projects App</h1>
-        </div>
-      </div>
-        <!-- mock -->
-        <div class="container">
-          <div class="page-header">
-            プロジェクト１
-          </div>
-          <ul class="nav nav-tabs nav-justified mb20" role="tablist">
-            <li class="active">
-              <a href="#timelines" role="tab" data-toggle="tab">タイムライン</a>
-            </li>
-            <li>
-              <a href="#details" role="tab" data-toggle="tab">概要</a>
-            </li>
-            <li>
-              <a href="#members" role="tab" data-toggle="tab">メンバー</a>
-            </li>
-          </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="timelines" ng-controller="TimelineController">
-                <div class="row mb15">
-                  <div class="col-md-3 mb-sm-10">
-                    <button class="btn btn-primary" ng-click="showMessageFrom()"><i class="fa fa-pencil"></i> 新規追加</button>
-                  </div>
-                  <div class="col-md-3 col-md-offset-6">
-                    <input type="text" class="form-control" placeholder="Search for ...">
-                  </div>
-                </div>
-                <div class="panel panel-timeline-add" ng-show="add_new">
-                  <span class="avatar w50">
-                    <img src="{{ author.src }}" alt="avator" class="img-circle">
-                    <span><a href="">{{ author.name }}</a></span>
-                  </span>
-                  <div class="panel-body">
-                    <div class="inner">
-                     <textarea rows="3" class="form-control" placeholder="メッセージを書く" ng-model="newMessage" ></textarea>
-                    </div>
-                    <div class="text-right">
-                      <time><small><i class="fa fa-clock-o"></i> {{ now_date | date:'yy-MM-dd HH:mm'}}<input type="hidden" ng-model="now_date"></small></time>
-                    </div>
-                    <button class="btn btn-sm btn-primary" ng-click="addMessage()">投稿する</button>
-                    <button class="btn btn-sm btn-default" ng-click="hideMessageFrom()">キャンセル</button>
-                  </div>
-                </div>
-                <div class="panel panel-timeline" ng-repeat="message in messages | orderBy:date:reverse">
-                  <span class="avatar w50">
-                    <img src="{{ message.author.src }}" alt="avator" class="img-circle">
-                    <span><a href="">{{ message.author.name }}</a></span>
-                  </span>
-                  <div class="panel-body">
-                    <div class="inner" ng-bind-html="message.body | nl2br | parseUrl">
-                    
-                    </div>
-                    <div class="text-right">
-                      <time><small><i class="fa fa-clock-o"></i> {{ message.date | date:'yy-MM-dd HH:mm'}}</small></time>
-                    </div>
-                  </div>
-                </div>
-                <div class="dateline"><span class="label-date"><i class="fa fa-lg fa-code-fork"></i> 2014-09-11</span></div>
-              </div>
-              <div class="tab-pane" id="details">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    概要
-                  </div>
-                  <div class="panel-body">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="members">
-                <div class="row height-md-3">
-                  <div class="col-md-4">
-                    <div class="panel panel-default panel-member height-el">
-                      <div class="panel-heading pos-r">
-                        <span class="avatar w50">
-                          <img src="source/img/user-dummy.png" alt="avator" class="img-circle">
-                        </span>
-                        メンバー1
-                      </div>
-                      <div class="panel-body">
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="panel panel-default panel-member height-el">
-                      <div class="panel-heading pos-r">
-                        <span class="avatar w50">
-                          <img src="source/img/user-dummy.png" alt="avator" class="img-circle">
-                        </span>
-                        メンバー2
-                      </div>
-                      <div class="panel-body">
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="panel panel-default panel-member height-el">
-                      <div class="panel-heading pos-r">
-                        <span class="avatar w50">
-                          <img src="source/img/user-dummy.png" alt="avator" class="img-circle">
-                        </span>
-                        メンバー3
-                      </div>
-                      <div class="panel-body">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
-  <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js?ver=1.0'></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="source/js/min/lib.min.js"></script>
-  <script src="source/js/min/common.min.js"></script>
-  <script src="source/js/min/modules.min.js"></script>
-  <script src="source/js/min/app.min.js"></script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>Projects App</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Condensed">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="source/css/style.css">
+	<!--[if lt IE 9]>
+		<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body ng-app="App">
+	<div ng-controller="TimelineController">
+		<div class="side-nav">
+			<div class="panel-body">
+				<input type="text" class="form-control" placeholder="プロジェクトを検索">
+			</div>
+			<nav>
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active">
+						<a href="#">Projects</a>
+					</li>
+					<li>
+						<a href="#" ng-click="switchClient(1)">Project01</a>
+					</li>
+					<li>
+						<a href="#" ng-click="switchClient(2)">Project02</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- main -->
+		<div class="main">
+			<div class="jumbotron">
+				<div class="container">
+					<h1>Projects App</h1>
+				</div>
+			</div>
+			<!-- mock -->
+			<div class="container">
+				<div class="page-header">
+				プロジェクト１
+				</div>
+				<ul class="nav nav-tabs nav-justified mb20" role="tablist">
+					<li class="active">
+						<a href="#timelines" role="tab" data-toggle="tab">タイムライン</a>
+					</li>
+					<li>
+						<a href="#details" role="tab" data-toggle="tab">概要</a>
+					</li>
+					<li>
+						<a href="#members" role="tab" data-toggle="tab">メンバー</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="timelines">
+						<div class="row mb15">
+							<div class="col-md-3 mb-sm-10">
+								<button class="btn btn-primary" ng-click="showMessageFrom()"><i class="fa fa-pencil"></i> 新規追加</button>
+							</div>
+							<div class="col-md-3 col-md-offset-6">
+								<input type="text" class="form-control" placeholder="Search for ...">
+							</div>
+						</div>
+						<div class="panel panel-timeline-add" ng-show="add_new">
+							<span class="avatar w50">
+								<img src="{{ author.src }}" alt="avator" class="img-circle">
+								<span>
+									<a href="">{{ author.name }}</a>
+								</span>
+							</span>
+							<div class="panel-body">
+								<div class="inner">
+									<textarea rows="3" class="form-control" placeholder="メッセージを書く" ng-model="newMessage" ></textarea>
+								</div>
+								<div class="text-right">
+									<time>
+										<small>
+											<i class="fa fa-clock-o"></i> {{ now_date | date:'yy-MM-dd HH:mm'}}
+											<input type="hidden" ng-model="now_date">
+										</small>
+									</time>
+								</div>
+								<button class="btn btn-sm btn-primary" ng-click="addMessage()">
+									投稿する
+								</button>
+								<button class="btn btn-sm btn-default" ng-click="hideMessageFrom()">
+									キャンセル
+								</button>
+							</div>
+						</div>
+						<div class="panel panel-timeline" ng-repeat="message in messages | orderBy:date:reverse">
+							<span class="avatar w50">
+								<img src="{{ message.author.src }}" alt="avator" class="img-circle">
+								<span>
+									<a href="">{{ message.author.name }}</a>
+								</span>
+							</span>
+							<div class="panel-body">
+								<div class="inner" ng-bind-html="message.body | nl2br | parseUrl">
+								</div>
+								<div class="text-right">
+									<time>
+										<small>
+											<i class="fa fa-clock-o"></i> {{ message.date | date:'yy-MM-dd HH:mm'}}
+										</small>
+									</time>
+								</div>
+							</div>
+						</div>
+						<div class="dateline">
+							<span class="label-date">
+								<i class="fa fa-lg fa-code-fork"></i> 2014-09-11
+							</span>
+						</div>
+					</div>
+					<div class="tab-pane" id="details">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							概要
+							</div>
+							<div class="panel-body">
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="members">
+						<div class="row height-md-3">
+							<div class="col-md-4">
+								<div class="panel panel-default panel-member height-el">
+									<div class="panel-heading pos-r">
+									<span class="avatar w50">
+										<img src="source/img/user-dummy.png" alt="avator" class="img-circle">
+									</span>
+									メンバー1
+									</div>
+									<div class="panel-body">
+									
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel panel-default panel-member height-el">
+									<div class="panel-heading pos-r">
+									<span class="avatar w50">
+										<img src="source/img/user-dummy.png" alt="avator" class="img-circle">
+									</span>
+									メンバー2
+									</div>
+									<div class="panel-body">
+									
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel panel-default panel-member height-el">
+									<div class="panel-heading pos-r">
+										<span class="avatar w50">
+											<img src="source/img/user-dummy.png" alt="avator" class="img-circle">
+										</span>
+										メンバー3
+									</div>
+									<div class="panel-body">
+						
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js?ver=1.0'></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="source/js/min/lib.min.js"></script>
+	<script src="source/js/min/common.min.js"></script>
+	<script src="source/js/min/modules.min.js"></script>
+	<script src="source/js/min/app.min.js"></script>
 </body>
 </html>

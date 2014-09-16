@@ -3,6 +3,7 @@
 }
 
 .panel-timeline{
+	box-shadow: none;
 	background-color: transparent ;
 	padding: 0;
 	position: relative;
@@ -113,6 +114,7 @@
 }
 
 .panel-timeline-add{
+	box-shadow: none;
 	background-color: transparent ;
 	padding: 0;
 	position: relative;
@@ -132,5 +134,10 @@
 		.inner{
 			min-height: 60px;
 		}
+	}
+		time{
+		color: #999;
+		position: relative;
+		top:10px;
 	}
 }

@@ -1,11 +1,25 @@
-var def = [];
-
+// var def = {
+//     "messages": [],
+//     "detail": {},
+//     "author": {
+//         "name": "奥田峰夫",
+//         "src": "source/img/user-dummy.png"
+//     }
+// }
  	App = angular.module('App',['ngSanitize']);
+    /**
+     * [description]
+     * @return {[type]} [description]
+     */
  	App.filter('nl2br', function() {
 	  return function(input) {
 	    return input.replace(/\n/g, '<br>');
 	  };
 	});
+    /**
+     * [description]
+     * @return {[type]} [description]
+     */
 	App.filter('parseUrl', function() {
 	    var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
 	    return function(text, target, style) {
@@ -20,36 +34,75 @@ var def = [];
 	        return text;
 	    };
 	});
- 	//TimelineController
+ 	/**
+     * TimelineController
+     * @param  {[type]} $scope  [description]
+     * @param  {[type]} $filter [description]
+     * @return {[type]}         [description]
+     */
  	App.controller('TimelineController',['$scope','$filter',function($scope,$filter){
- 		$scope.messages = def;
+        
+        $.getJSON(
+                'source/js/jsons/1.js',
+                function(json){
+                $scope.$apply(function() {
+                     $scope.messages = json.messages;
+                     $scope.author = json.author;
+                     $scope.detail = json.detail;
+                })
+            }
+        );
  		$scope.now_date = Math.round(new Date().getTime());
  		$scope.add_new = false;
- 		$scope.author = {
-			name : '奥田峰夫',
-			src : 'source/img/user-dummy.png'
-		};
-
+        $scope.newMessage = '';
+ 		/**
+         * [showMessageFrom description]
+         * @return {[type]} [description]
+         */
 		$scope.showMessageFrom = function(){
 			$scope.add_new = true;
 			$scope.now_date = Math.round(new Date().getTime());
 		}
+        /**
+         * [hideMessageFrom description]
+         * @return {[type]} [description]
+         */
 		$scope.hideMessageFrom = function(){
 			$scope.add_new = false;
 		}
  		/**
- 		* Add message method
- 		**/
+         * [addMessage description]
+         */
  		$scope.addMessage = function(){
-			$scope.add_new = false;
- 			$scope.messages.push({
- 				body : $scope.newMessage,
- 				author : $scope.author,
- 				date : $scope.now_date
- 			})
- 			$scope.newMessage = '';
+            if($scope.newMessage==''){
+                alert('入力してください')
+            }else{
+    			$scope.add_new = false;
+     			$scope.messages.push({
+     				body : $scope.newMessage,
+     				author : $scope.author,
+     				date : Math.round(new Date().getTime())
+     			})
+     			$scope.newMessage = '';
+            }
  		}
-
+        /**
+         * [switchClient description]
+         * @param  {[type]} id [description]
+         * @return {[type]}    [description]
+         */
+        $scope.switchClient = function(id){
+            $.getJSON(
+                'source/js/jsons/'+id+'.js',
+                function(json){
+                $scope.$apply(function() {
+                     $scope.messages = json.messages;
+                     $scope.author = json.author;
+                     $scope.detail = json.detail;
+                })
+            }
+        );
+        }
  	}])
 
     // .controller('MainController',['$scope', '$filter',function($scope, $filter){

@@ -93,7 +93,7 @@
 								</button>
 							</div>
 						</div>
-						<div class="panel panel-timeline" ng-repeat="message in messages | orderBy:date:reverse">
+						<div class="panel panel-timeline" ng-repeat="message in messages | orderBy:'date':reverse">
 							<span class="avatar w50">
 								<img src="{{ message.author.src }}" alt="avator" class="img-circle">
 								<span>

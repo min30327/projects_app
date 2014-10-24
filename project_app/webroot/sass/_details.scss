@@ -1,0 +1,29 @@
+.details{
+	td{
+		// padding-bottom: 10px;
+		padding-right: 100px;
+		position: relative;
+		-ms-word-break: break-all;
+		    word-break: break-all;
+		&:hover{
+				.controls {
+					display: block;
+				}
+		}
+	}
+			.controls {
+				display: none;
+				float: right;
+				color: #999;
+				position: absolute;
+				right:10px;
+				bottom: 5px;
+				line-height: 20px;
+				padding-right: 5px;
+				i{
+					font-size: 17px;
+					vertical-align: middle;
+					margin-right: 3px;
+				}
+			}
+	}

@@ -1,0 +1,22 @@
+/*************************
+	Style settings 
+*************************/
+
+/** ベンダープレフィックス **/
+$prefix :  -webkit-, -moz-, -ms-, -o-, '';
+
+/** レスポンシブユーティリティー **/
+$responsive :  767,991,1199;
+
+/** font family **/
+$font_family : 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+
+/** 明朝体 **/
+$font_family_min : 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HG明朝E', 'ＭＳ Ｐ明朝', 'MS PMincho', 'MS 明朝', serif;
+
+/** リンクカラー **/
+$link_color : #55acee;
+
+$fz_s : 10px;
+
+$main_color :#55acee ;

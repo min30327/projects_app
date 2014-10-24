@@ -1,0 +1,162 @@
+
+	.panel-schedule{
+		position: relative;
+		padding-left: 110px;
+		.panel-schedule-body{
+			font-size: 20px;
+			min-height: 79px;
+			padding-right: 80px;
+			padding-bottom: 10px;
+			word-break:break-all;
+			.detail{
+				padding-top: 10px;
+				font-size: 13px;
+				color: #bbb;
+			}
+			.checks{
+				position: absolute;
+				right: 25px;
+				top: 10px;
+				font-size: 25px;
+				width: 33px;
+				height: 57px;
+				i{
+					cursor: pointer;
+					position: absolute;
+					left: 0;
+					top: 0;
+					&:hover{
+						opacity: 0.7;
+					}
+				}
+				.yet{
+					color: #ddd;					
+					font-size: 30pt;
+				}
+				.success{
+					color: $main_color;
+					font-size: 30pt;
+				}
+			}
+			.controls{
+				position: absolute;
+				right: 80px;
+				bottom: 5px;				
+				display: none;
+				color: #999;
+				font-size: 14px;
+				i{
+					vertical-align: middle;
+					font-size: 20px;
+					margin-right: 5px;
+				}
+			}
+			&:hover{
+				.controls{
+					display: inline-block;
+				}
+			}
+		}
+
+	}
+	.schedule_date{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 88px;
+		text-align: center;
+		border-color: $main_color;
+		@include easeOutQuart(500);
+			
+		.month{
+			font-size: 20px;
+			display: block;
+			padding:5px 0 3px;
+			background: $main_color;
+			color: #fff;
+			border-color: $main_color;
+			@include easeOutQuart(500);
+			small{
+				font-size: 12px;
+				padding-left: 3px;
+			}
+			.year{
+				display: block;
+				line-height: 100%;
+				padding-left: 0;
+			}
+		}
+		.date{
+			display: block;
+			padding: 3px 0;
+			font-size: 15px;
+			color: $main_color;
+			border-color: $main_color;
+			@include easeOutQuart(500);
+			
+			small{
+				font-size: 12px;
+				padding-left: 3px;
+			}
+		}
+	}
+	.schedule_date.yet{
+		
+		border-color:#bbb;
+		.month{
+			
+			background:#bbb;
+			border-color:#bbb;
+			
+		}
+		.date{
+		
+			color:#bbb;
+			border-color:#bbb;
+			
+		}
+	}
+	.schedule_date.warning{
+		
+		border-color:#f0ad4e;
+		.month{
+			
+			background:#f0ad4e;
+			border-color:#f0ad4e;
+			
+		}
+		.date{
+		
+			color:#f0ad4e;
+			border-color:#f0ad4e;
+			
+		}
+	}
+	.schedule_date.danger{
+		
+		border-color:#d9534f;
+		.month{
+			
+			background:#d9534f;
+			border-color:#d9534f;
+			
+		}
+		.date{
+		
+			color:#d9534f;
+			border-color:#d9534f;
+			
+		}
+	}
+
+.modal-body{
+	.panel-schedule{
+		margin-top: 15px;
+		.panel-body{
+			font-size: 15px;
+			.hide_edit_mode{
+				display: none;
+			}
+		}
+	}
+}

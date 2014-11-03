@@ -62,7 +62,6 @@
                 })
             }
         );
-
        $(window).on('load',function(){
            $scope.$apply(function() {
                  popState();
@@ -321,7 +320,7 @@
                     type : 'Post',
                     data : {
                         data:{
-                            poject_id : $scope.id
+                            project_id : $scope.id
                         }
                     },
                     success: function(data){
@@ -525,6 +524,12 @@
         $scope.hideProjectFrom = function(){
             $scope.add_project = false;
         }
+        $scope.showEditProjectFrom = function(){
+            $scope.edit_project = true;
+        }
+        $scope.cancelEditProject = function(){
+            $scope.edit_project = false;
+        }
         $scope.addProject = function(){
             if($scope.newProjectName == ''){
                 alert('入力してください');
@@ -554,8 +559,7 @@
             if(project.name == ''){
                 alert('入力してください');
             }else{
-                var id = $scope.projects.indexOf(project);
-                $.ajax({
+               $.ajax({
                     url :path  +'edit/' + project.id,
                     type : 'Post',
                     data : {
@@ -566,13 +570,46 @@
                             }
                     },
                     success: function(data){
-                        
                         $scope.$apply(function(){
-                            $scope.projects[id].name = project.name; 
+                             for(var i = 0; i < $scope.projects.length; i++){
+                                 if( $scope.projects[i].id==project.id){
+                                        $scope.projects[i].name = project.name; 
+                                }
+                            }
                         });
                     }
                 })
             }
+        }
+        $scope.deleteProject = function(project){
+            var id = project.id;
+             var confirm  = {
+                title : '本当に削除しますか？',
+                size :'xs',
+                content : 'このプロジェクトを削除します。よろしければ[ 削除 ]ボタンを押してください。',
+                submitClass : 'btn-danger delete_project',
+                submitText : '削除',
+                footer : true
+            };
+            var source = $('#modal_tmpl').tmpl(confirm);
+            $('#get-modal').html(source);
+            $('.modal').modal();
+            $('#get-modal .modal-body').append('<div class="panel panel-default mt20"><div class="panel-body"><h3>'+project.name+'</h3></div></div>');
+            $(document).on('click.delete_project','.delete_project',function(){
+                $('.modal').modal('hide');
+                $.ajax({
+                    url :path  +'delete/' + id,
+                    type : 'Post',
+                    data : '',
+                    success : function(){
+                        window.location.href = path;
+                    }          
+                })
+            });
+
+            $('.modal').on('hidden.bs.modal', function (e) {
+                 $(document).off('click.delete_project','.delete_project');
+            })
         }
         /**
          * [switchClient description]
@@ -580,6 +617,8 @@
          * @return {[type]}    [description]
          */
         $scope.switchIndex = function(){
+
+                loading();
                 $scope.view = false;
                 window.location.hash = '';
                 $scope.messages = [];
@@ -587,9 +626,7 @@
                 $scope.detail = [];
                 $('.side-nav .nav li').removeClass('active');
                 $('.project_index').addClass('active');
-                setTimeout(function(){
-                    $scope.project.name = 'プロジェクト';
-                },1000);
+
                 $.ajax({
                     url :path  +'get_information/',
                     type : 'Post',
@@ -597,6 +634,7 @@
                     success: function(data){
                         $scope.$apply(function(){
                             get_scope(data);
+                            loading_complete();
                         });
                     }
                 })
@@ -607,6 +645,7 @@
          * @return {[type]}    [description]
          */
         $scope.switchClient = function(id,first){
+            loading();
             $scope.predate = '';
             $scope.view = true;
             $scope.id = id;
@@ -648,7 +687,7 @@
                  // $scope.switchIndex();
             }else{
                 var hash = window.location.hash.replace(/^#\!/,'');
-               
+                
                 setTimeout(function(){
                  $scope.newMessage = '';   
                  pushState(hash);
@@ -670,7 +709,8 @@
                    path   +'get_data/' + uri ,
                     function(json){
                     $scope.$apply(function() {
-                            get_scope(json)
+                            get_scope(json);
+                            loading_complete();
                     })
                 }
             ).error(function(){
@@ -693,6 +733,11 @@
              $scope.details = (json.details) ? json.details : [];
              $scope.paginate = json.paginate;
         }
-      
+        var loading = function(){
+            $('#loading').removeClass('active');
+        }
+        var loading_complete = function(){
+            $('#loading').addClass('active');
+        }
  	}]);
 

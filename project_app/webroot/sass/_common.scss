@@ -177,3 +177,40 @@ body.has-navbar-top{
 		bottom:10px;
 	}
 }
+.jumbotron{
+	position: relative;
+	.controls{
+		position: absolute;
+		right: 10%;
+		bottom:10%;
+		a{
+			color: #fff;
+		}
+	}
+}
+
+#loading{
+	background:#fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	opacity: 1;
+	@include easeOutQuart();
+	&.active{
+		opacity: 0;
+		z-index: -10;
+	}
+	i{
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-top: -15px;
+		margin-left: -15px;
+		font-size: 30px;
+		line-height: 30px;
+		color: #31A8CB;
+	}
+}

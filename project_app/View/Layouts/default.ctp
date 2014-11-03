@@ -17,6 +17,9 @@
 <![endif]-->
 </head>
 <body class="has-navbar-top" ng-app="App">
+<div id="loading">
+  <i class="ion-ios7-reloading"></i>
+</div>
   <div ng-controller="TimelineController">
 	<?php echo $this->element('side');?>
 	<!-- main -->
@@ -68,5 +71,6 @@
 </div>
 </script>
 <div id="get-modal"></div>
+
 </body>
 </html>

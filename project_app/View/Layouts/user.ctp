@@ -16,7 +16,7 @@
   <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body class="has-navbar-top" ng-app="App">
+<body class="has-navbar-top" >
 	<?php echo $this->element('user-side');?>
 	<!-- main -->
     <div class="main">

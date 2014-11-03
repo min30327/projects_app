@@ -6,7 +6,7 @@
 							<button class="btn btn-primary" ng-click="showProjectFrom()"><i class="f-lg ion-ios7-plus-empty"></i> 新規追加</button>
 						</div>
 					</div>
-					<div class="panel slide-down" ng-show="add_project">
+					<div class="panel panel-default slide-down" ng-show="add_project">
 						<div class="panel-body">
 							<div class="col-md-2 text-right">
 								プロジェクト名

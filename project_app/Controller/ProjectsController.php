@@ -62,6 +62,16 @@ class ProjectsController extends AppController {
 		$this->set(compact('response'));
     	$this->set('_serialize', 'response'); 	
 	}
+	public function delete($id =null){
+		$response = array();
+		if (!$this->request->is('ajax'))
+			throw new NotFoundException(__('Invalid request'));
+		$this->viewClass = 'Json';
+		$this->Project->id = $id;
+		$this->Project->delete($id);
+		$this->set(compact('response'));
+    	$this->set('_serialize', 'response'); 	
+	}
 	/**
 	 * [get_project_lists description]
 	 * @return [type]
@@ -114,6 +124,7 @@ class ProjectsController extends AppController {
 			$newMessage[$k]['author'] = $this->Core->createAuthor($v['User']);
 			$newMessage[$k]['edit'] = false;
 		}
+		$response['project']['id'] = $data['Project']['id'];
 		$response['project']['name'] = $data['Project']['name'];
 		$response['details'] =  json_decode($data['Project']['data'],true);
 		$response['schedules'] = $data['Schedule'];

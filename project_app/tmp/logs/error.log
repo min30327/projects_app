@@ -3299,3 +3299,12 @@ Stack Trace:
 #1 /vagrant/dev/Vendor/cakephp/cakephp/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest))
 #2 /vagrant/dev/project_app/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2014-11-04 01:23:33 Error: [NotFoundException] Invalid request
+Request URL: /dev/project_app/projects/delete_schedule/22
+Stack Trace:
+#0 [internal function]: ProjectsController->delete_schedule('22')
+#1 /vagrant/dev/Vendor/cakephp/cakephp/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 /vagrant/dev/Vendor/cakephp/cakephp/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#3 /vagrant/dev/Vendor/cakephp/cakephp/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest))
+#4 /vagrant/dev/project_app/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}

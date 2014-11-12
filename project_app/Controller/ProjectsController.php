@@ -110,7 +110,7 @@ class ProjectsController extends AppController {
 		$this->paginate = array(
 	                'Message' => array(
 	                    'conditions' => array('project_id'=>$id),
-	                    'order' => array('modified'=>'DESC'),
+	                    'order' => array('Message.modified'=>'DESC'),
 	                    'limit' =>10,
 	                    'paramType' => 'querystring'
 	                )

@@ -7,5 +7,6 @@ App::uses('AppModel', 'Model');
  */
 class Message extends AppModel {
 
+	public $order = array('modified DESC');
 	public $belongsTo = array('User','Project');
 }

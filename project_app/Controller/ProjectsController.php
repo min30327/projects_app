@@ -110,14 +110,13 @@ class ProjectsController extends AppController {
 		$this->paginate = array(
 	                'Message' => array(
 	                    'conditions' => array('project_id'=>$id),
-	                    'order' => array('Message.modified desc'),
+	                    'order' => array('modified'=>'desc'),
 	                    'limit' =>10,
 	                    'paramType' => 'querystring'
 	                )
 	  	);
 
 		$message = $this->paginate('Message');
-
 		$response['author'] = $this->Core->createAuthor($AUTH);
 		foreach($message as $k => $v)
 		{
